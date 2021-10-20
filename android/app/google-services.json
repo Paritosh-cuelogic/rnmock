@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "117101675793",
+    "project_id": "rn-mock",
+    "storage_bucket": "rn-mock.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:117101675793:android:5ae85fe49fe79b2c8138b0",
+        "android_client_info": {
+          "package_name": "com.cue.mockapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "117101675793-empl9d42h7lei11avm7hl1jibjortcu5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwPylDv0I9DqhL8Nwf3NNlZIlPmAADmK8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "117101675793-empl9d42h7lei11avm7hl1jibjortcu5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:117101675793:android:aea8ae362961b0b28138b0",
+        "android_client_info": {
+          "package_name": "com.cuelogic.mock"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "117101675793-empl9d42h7lei11avm7hl1jibjortcu5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwPylDv0I9DqhL8Nwf3NNlZIlPmAADmK8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "117101675793-empl9d42h7lei11avm7hl1jibjortcu5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
