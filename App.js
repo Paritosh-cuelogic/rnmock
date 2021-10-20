@@ -1,14 +1,13 @@
 import React, {useEffect} from 'react';
 import initFireBase from './utils/firebaseConfig';
 
-import LoginScreen from './Screens/LoginScreen/LoginScreen';
-
+import RegisterScreen from './Screens/RegisterScreen/RegisterScreen';
 const App = () => {
   useEffect(() => {
     initFireBase();
   }, []);
 
-  return <LoginScreen />;
+  return <RegisterScreen />;
 };
 
 export default App;
