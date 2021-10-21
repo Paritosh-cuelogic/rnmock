@@ -1,13 +1,16 @@
 import React, {useState} from 'react';
 import {View, Button} from 'react-native';
+import {inject, observer} from 'mobx-react';
 import validate from '../../utils/formValidation';
 import InputComponent from '../../common/components/InputComponent';
 import {
   PASSWORD_MIN_LENGTH,
   PASSWORD_MAX_LENGTH,
 } from '../../common/constants/formConstants';
+import Loader from '../../common/components/Loader';
+import Error from '../../common/components/Error';
 
-const RegisterScreen = () => {
+const RegisterScreen = ({UserStore}) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -73,11 +76,19 @@ const RegisterScreen = () => {
     // check if form is valid
     if (isFormValid) {
       console.log('Success');
+      // pass user data to store
+      UserStore.registerUser({
+        firstName,
+        lastName,
+        email,
+        password,
+      }).then(() => {});
     }
   };
 
   return (
     <View>
+      {UserStore.isError ? <Error /> : null}
       <InputComponent
         type="textInput"
         label="First Name"
@@ -112,10 +123,14 @@ const RegisterScreen = () => {
         error={passwordError}
       />
       <View>
-        <Button title="Register" onPress={registeFormHandler} />
+        {UserStore.isLoading ? (
+          <Loader />
+        ) : (
+          <Button title="Register" onPress={registeFormHandler} />
+        )}
       </View>
     </View>
   );
 };
 
-export default RegisterScreen;
+export default inject('UserStore')(observer(RegisterScreen));
