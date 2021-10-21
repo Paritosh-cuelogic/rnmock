@@ -10,18 +10,44 @@ import {
 import Loader from '../../common/components/Loader';
 import Error from '../../common/components/Error';
 
-const LoginScreen = ({UserStore}) => {
+const RegisterScreen = ({UserStore}) => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const [firstNameError, setFirstNameError] = useState('');
+  const [lastNameError, setLastNameError] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
   /**
    * form sumit handler
    */
-  const loginFormHandler = () => {
+  const registeFormHandler = () => {
     let isFormValid = true;
+
+    // validate first name
+    const firstNameValidationError = validate('First name', email, {
+      isRequired: true,
+    });
+    if (firstNameValidationError) {
+      setFirstNameError(firstNameValidationError);
+      isFormValid = false;
+    } else {
+      setFirstNameError('');
+    }
+
+    // validate last name
+    const lastNameValidationError = validate('Last name', email, {
+      isRequired: true,
+    });
+    if (lastNameValidationError) {
+      setLastNameError(lastNameValidationError);
+      isFormValid = false;
+    } else {
+      setLastNameError('');
+    }
 
     // validate email
     const emailValidationError = validate('Email', email, {
@@ -51,16 +77,34 @@ const LoginScreen = ({UserStore}) => {
     if (isFormValid) {
       console.log('Success');
       // pass user data to store
-      UserStore.loginUser({
+      UserStore.registerUser({
+        firstName,
+        lastName,
         email,
         password,
-      });
+      }).then(() => {});
     }
   };
 
   return (
     <View>
       {UserStore.isError ? <Error /> : null}
+      <InputComponent
+        type="textInput"
+        label="First Name"
+        placeholder="Enter First Name"
+        value={firstName}
+        onChangeText={text => setFirstName(text)}
+        error={firstNameError}
+      />
+      <InputComponent
+        type="textInput"
+        label="Last Name"
+        placeholder="Enter Last Name"
+        value={lastName}
+        onChangeText={text => setLastName(text)}
+        error={lastNameError}
+      />
       <InputComponent
         type="textInput"
         label="Email"
@@ -82,11 +126,11 @@ const LoginScreen = ({UserStore}) => {
         {UserStore.isLoading ? (
           <Loader />
         ) : (
-          <Button title="Register" onPress={loginFormHandler} />
+          <Button title="Register" onPress={registeFormHandler} />
         )}
       </View>
     </View>
   );
 };
 
-export default inject('UserStore')(observer(LoginScreen));
+export default inject('UserStore')(observer(RegisterScreen));

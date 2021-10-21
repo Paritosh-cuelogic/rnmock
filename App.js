@@ -1,14 +1,19 @@
 import React, {useEffect} from 'react';
+import {Provider} from 'mobx-react';
 import initFireBase from './utils/firebaseConfig';
+import rootStore from './state/rootStore';
 
-import LoginScreen from './Screens/LoginScreen/LoginScreen';
-
+import RegisterScreen from './Screens/RegisterScreen/RegisterScreen';
 const App = () => {
   useEffect(() => {
     initFireBase();
   }, []);
 
-  return <LoginScreen />;
+  return (
+    <Provider {...rootStore}>
+      <RegisterScreen />
+    </Provider>
+  );
 };
 
 export default App;
